@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>CippyDB - Real Time API for your own CouchDB server</title>
+    <meta name="Description" content="Real Time API for CouchDB, Firebase API for your own server, 3-way data binding" />
+    <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700,400' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="container-fluid">
+    <div>
+      <header id="header">
+        <div class="container-centered clearfix">
+          <a href="" title="jsblocks" class="logo"><img src="img/logo.png" alt="jsblocks logo" /></a><label for="fake-checkbox" class="btn btn-default"><span class="glyphicon glyphicon-menu-hamburger"></span></label><input type="checkbox" id="fake-checkbox" style="display:none;" />
+          <ul id="header-menu" class="nav-menu">
+            <li class><a href="#learn" class="nav-link">Learn</a></li>
+            <li class><a href="#api" class="nav-link nav-link-active">API</a></li>
+            <li class="nav-download"><a href="cippydb.zip" class="nav-link">Download</a></li>
+            <li><a href="https://github.com/sonnylazuardi/cippydb" class="follow-link">View on GitHub</a></li>
+            <li><a class="fa fa-twitter" href="https://twitter.com/sonnylazuardi"></a></li>
+          </ul>
+        </div>
+      </header>
+    </div>
+    <div id="home" class="view">
+      <div id="lead-section">
+        <div class="container-centered">
+          <div class="section-content">
+            <h1 class="section-title">Real time API for CouchDB server</h1>
+            <p>Firebase-like API to access CouchDB data in real time that support offline data sync</p>
+            <a href="#learn" class="learn-more-btn">Learn more</a> <a href="cippydb.zip" class="download-btn"><i class="fa fa-download"></i>&nbsp;&nbsp; Download</a>
+          </div>
+        </div>
+      </div>
+      <div class="row container-centered brief-info" id="api">
+        <div class="col-md-4 article-wrap">
+          <h2 class="article-title">Simple API access</h2>
+          <p>Access your data with a single line of code</p>
+          <div class="code-snippet lang-javascript">
+            var Chats = new Cippy('http://localhost:5984/chats');
+          </div>
+        </div>
+        <div class="col-md-4 article-wrap">
+          <h2 class="article-title">Three-way data binding</h2>
+          <p>Keep your data always in sync</p>
+          <div class="code-snippet lang-javascript">
+            Chats.bindTo($scope, 'chats');
+          </div>
+        </div>
+        <div class="col-md-4 article-wrap">
+          <h2 class="article-title">CRUD data</h2>
+          <p>Create, read, update, delete your data</p>
+          <div class="code-snippet lang-javascript">
+            Chats.add({
+              user: 'sonny',
+              message: 'Hello World'
+            });
+          </div>
+        </div>
+      </div>
+      <div class="app-example hello-world-example">
+        <div class="row example-holder container-centered">
+          <div class="col-lg-12">
+            <h2 class="section-title" id="learn">Simple Chat</h2>
+            <p class="section-description">This example shows how easy it is to implement chatting app.</p>
+          </div>
+          <div class="col-lg-8">
+            <div role="tabpanel">
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="html-1">
+                  <pre>
+<code class="xml hljs"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">ng-app</span>=<span class="hljs-value">"SimpleChat"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-controller</span>=<span class="hljs-value">"AppCtrl"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">form</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"name"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"Name"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">textarea</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"message"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"Your Message..."</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">textarea</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"send()"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"message in chats"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>{{message.name}} : <span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>
+          {{message.message}}
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"vendor/js/underscore-min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"vendor/js/angular.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"vendor/js/pouchdb.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/cippy.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="php">
+      angular.module(<span class="hljs-string">'SimpleChat'</span>, [<span class="hljs-string">'cippydb'</span>])
+      .controller(<span class="hljs-string">'AppCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>, Cippy)</span> </span>{
+        <span class="hljs-variable">$scope</span>.chats = [];
+        <span class="hljs-variable">$scope</span>.name = <span class="hljs-string">''</span>;
+        <span class="hljs-variable">$scope</span>.message = <span class="hljs-string">''</span>;
+        <span class="hljs-keyword">var</span> ChatDB = <span class="hljs-keyword">new</span> Cippy(<span class="hljs-string">'http://localhost:5984/chats'</span>);
+        ChatDB.bindTo(<span class="hljs-variable">$scope</span>, <span class="hljs-string">'chats'</span>);
+
+        <span class="hljs-variable">$scope</span>.send = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+          ChatDB.add({
+            _id: <span class="hljs-keyword">new</span> Date().toISOString(),
+            name: <span class="hljs-variable">$scope</span>.name,
+            message: <span class="hljs-variable">$scope</span>.message
+          });
+          <span class="hljs-variable">$scope</span>.message = <span class="hljs-string">''</span>;
+        }
+      });
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code>
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <iframe src="demo.html" frameborder="0" width="100%" height="600px"></iframe>
+            <p class="text-center">
+              <a href="demo.html" target="_blank" class="btn-common">View full demo</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-example animations-example">
+      <div class="row example-holder container-centered">
+        <div class="col-lg-5">
+          <h2 class="section-title" id="learn">Cippy Audio Editor</h2>
+          <p class="">This is the case study of using CippyDB for collaborative music editing online app. Forked from <a href="http://web-audio-editor.herokuapp.com/">Web Audio Editor</a> by <a href="http://janmonschke.com/">Jan Monschke</a></p>
+          <p>
+            <a href="http://kabin.id:8080/" target="_blank" class="btn-common">Open app</a>
+            <a href="http://github.com/sonnylazuardi/cippy" target="_blank" class="btn-common">View app on Github</a>
+          </p>
+        </div>
+        <div class="col-lg-7">
+          <img src="img/cippyapp.png" alt="" style="width: 100%">
+        </div>
+      </div>
+    </div>
+    <div class="app-powered-by">
+      <div style="margin-bottom: 20px;">
+        proudly powered by:
+      </div>
+      <div class="row example-holder container-centered">
+        <div class="col-md-3 article-wrap">
+          <a href="http://angularjs.org">
+            <img src="img/angular.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 article-wrap">
+          <a href="http://underscorejs.org">
+            <img src="img/underscore.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 article-wrap">
+          <a href="http://pouchdb.com">
+            <img src="img/pouchdb.png" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 article-wrap">
+          <a href="http://couchdb.apache.org">
+            <img src="img/couchdb.png" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="learn" class="view container-centered" style="display:none;">
+      <div class="view-loader"><span class="fa fa-spinner fa-pulse"></span></div>
+    </div>
+    <div id="api" class="view container-centered" style="display:none;">
+      <div class="view-loader"><span class="fa fa-spinner fa-pulse"></span></div>
+    </div>
+    <div id="download" class="view" style="display:none;">
+      <div class="view-loader"><span class="fa fa-spinner fa-pulse"></span></div>
+    </div>
+    <div>
+      <footer id="footer" class>
+        <div class="container-centered clearfix">
+          <ul class="nav-menu">
+            <li class><a href="#learn" class="nav-link">Learn</a></li>
+            <li class><a href="#api" class="nav-link nav-link-active">API</a></li>
+            <li class><a href="cippydb.zip" class="nav-link">Download</a></li>
+            <li><a href="https://github.com/sonnylazuardi/cippydb" class="follow-link">View on GitHub</a></li>
+          </ul>
+          <div class="logo">
+            <h2><a href="" title="cippydb"><img src="img/footerLogo.png" alt="cippydb" /></a></h2>
+            <div class="licensed-holder">
+              <p>2015 &copy; MIT licensed. crafted with <i class="fa fa-heart"></i> by <a href="http://sonnylab.com">@sonnylazuardi</a><br /></p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

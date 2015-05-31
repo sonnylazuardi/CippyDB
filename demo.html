@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Chat Demo</title>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+  </head>
+  <body ng-app="SimpleChat">
+    <div ng-controller="AppCtrl">
+      <div class="chat-window">
+        <div class="chat-messages" id="chat-scroll" style="height: 460px;">
+          <ol class="chat-messages-list">
+            <li class="chat-message chat-message-friend" ng-repeat="message in chats">
+              <div class="chat-message-bubble">
+                <strong>{{message.name}}</strong>
+                {{message.message}}
+              </div>
+            </li>
+          </ol>
+        </div>
+        <form>
+          <div class="chat-input-bar">
+            <div class="chat-input-wrapper">
+              <a class="chat-input-tool" ng-click="clear()">
+                <i class="fa fa-remove"></i>
+              </a>
+              <div class="chat-box">
+                <input class="chat-name" ng-model="name" placeholder="Your name..."/>
+                <input class="chat-input" ng-model="message" placeholder="Your message..."/>
+              </div>
+              <button class="chat-send" type="submit" ng-click="send()">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/underscore-min.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/pouchdb.js"></script>
+    <script src="src/cippy.js"></script>
+    <script>
+      angular.module('SimpleChat', ['cippydb'])
+      .controller('AppCtrl', function($scope, Cippy) {
+        $scope.chats = [];
+        $scope.name = '';
+        $scope.message = '';
+        var ChatDB = new Cippy('http://kabin.id:5984/chats');
+        ChatDB.bindTo($scope, 'chats');
+        ChatDB.syncing().then(function() {
+          var $el = angular.element('#chat-scroll');
+          $el.animate({
+            scrollTop: $el.height()
+           }, 1000);
+        });
+        ChatDB.changes.on('change', function() {
+          var $el = angular.element('#chat-scroll');
+          $el.animate({
+            scrollTop: $el.height()
+           }, 1000);
+        });
+
+        $scope.send = function() {
+          if ($scope.name != '' && $scope.message != '') {
+            ChatDB.add({
+              _id: new Date().toISOString(),
+              name: $scope.name,
+              message: $scope.message
+            });
+            $scope.message = '';
+          }
+        }
+
+        $scope.clear = function() {
+          var r = confirm('Are you sure want to clear all messages?');
+          if (r == true) {
+            ChatDB.clear();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

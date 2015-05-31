@@ -1,0 +1,17 @@
+{
+  "name": "cippydb",
+  "version": "1.0.0",
+  "description": "real time api for your own couchdb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cippy",
+    "db",
+    "real",
+    "time"
+  ],
+  "author": "sonny",
+  "license": "mit"
+}
