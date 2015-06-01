@@ -53,13 +53,13 @@
           var $el = angular.element('#chat-scroll');
           $el.animate({
             scrollTop: $el.height()
-           }, 1000);
+           }, 100);
         });
         ChatDB.changes.on('change', function() {
           var $el = angular.element('#chat-scroll');
           $el.animate({
             scrollTop: $el.height()
-           }, 1000);
+           }, 100);
         });
 
         $scope.send = function() {
